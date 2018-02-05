@@ -24,6 +24,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
+        <mapping class="bernardino.modelo.Usuario" />
     </session-factory>
 
 </hibernate-configuration>
