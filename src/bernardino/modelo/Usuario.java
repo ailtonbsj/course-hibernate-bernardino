@@ -1,17 +1,20 @@
 package bernardino.modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,8 +29,8 @@ public class Usuario {
 	private Date dataNascimento;
 	private Integer idade;
 	private EstadoCivil estadoCivil;
-	private Endereco residencial;
-	private Endereco comercial;
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,24 +71,13 @@ public class Usuario {
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-	public Endereco getResidencial() {
-		return residencial;
-	}
-	public void setResidencial(Endereco residencial) {
-		this.residencial = residencial;
-	}
 	
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(name="logradouro",column=@Column(name="rua_comercial")),
-		@AttributeOverride(name="numero",column=@Column(name="num_comercial")),
-		@AttributeOverride(name="cidade",column=@Column(name="city_comercial"))
-	})
-	public Endereco getComercial() {
-		return comercial;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_phone", joinColumns = @JoinColumn(name = "id_user"))
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
-	public void setComercial(Endereco comercial) {
-		this.comercial = comercial;
-	}
-	
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}	
 }
