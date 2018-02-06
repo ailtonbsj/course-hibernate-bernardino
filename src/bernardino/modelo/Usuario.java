@@ -2,7 +2,10 @@ package bernardino.modelo;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +26,8 @@ public class Usuario {
 	private Date dataNascimento;
 	private Integer idade;
 	private EstadoCivil estadoCivil;
+	private Endereco residencial;
+	private Endereco comercial;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,4 +68,24 @@ public class Usuario {
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
+	public Endereco getResidencial() {
+		return residencial;
+	}
+	public void setResidencial(Endereco residencial) {
+		this.residencial = residencial;
+	}
+	
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name="logradouro",column=@Column(name="rua_comercial")),
+		@AttributeOverride(name="numero",column=@Column(name="num_comercial")),
+		@AttributeOverride(name="cidade",column=@Column(name="city_comercial"))
+	})
+	public Endereco getComercial() {
+		return comercial;
+	}
+	public void setComercial(Endereco comercial) {
+		this.comercial = comercial;
+	}
+	
 }
