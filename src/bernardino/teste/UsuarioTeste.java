@@ -22,9 +22,9 @@ public class UsuarioTeste {
 		clark.setDataNascimento(new Date());
 		clark.setIdade(30);
 		clark.setEstadoCivil(EstadoCivil.SOLTEIRO);
+		clark.getVeiculos().add(fusca);
+		clark.getVeiculos().add(brasilia);
 		
-		fusca.setUsuario(clark);
-		brasilia.setUsuario(clark);
 		
 		Usuario louis = new Usuario();
 		louis.setNome("Louis");
@@ -39,8 +39,6 @@ public class UsuarioTeste {
 		
 		ss.save(louis);
 		ss.save(clark);
-		ss.save(fusca);
-		ss.save(brasilia);
 		
 		ss.getTransaction().commit();
 		
