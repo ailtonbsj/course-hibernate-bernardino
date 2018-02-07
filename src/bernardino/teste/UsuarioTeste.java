@@ -16,7 +16,16 @@ public class UsuarioTeste {
 
 	public static void main(String[] args) {
 		
+		Usuario clark = new Usuario();
 		Veiculo fusca = new Veiculo("Fusca", 1966);
+		
+		clark.setNome("Clark");
+		clark.setDataNascimento(new Date());
+		clark.setIdade(30);
+		clark.setEstadoCivil(EstadoCivil.SOLTEIRO);
+		clark.setVeiculo(fusca);
+		
+		fusca.setUsuario(clark);
 		
 		Usuario louis = new Usuario();
 		louis.setNome("Louis");
@@ -24,12 +33,6 @@ public class UsuarioTeste {
 		louis.setIdade(25);
 		louis.setEstadoCivil(EstadoCivil.SOLTEIRO);
 		
-		Usuario clark = new Usuario();
-		clark.setNome("Clark");
-		clark.setDataNascimento(new Date());
-		clark.setIdade(30);
-		clark.setEstadoCivil(EstadoCivil.SOLTEIRO);
-		clark.setVeiculo(fusca);
 		
 		SessionFactory fac = new Configuration().configure().buildSessionFactory();
 		Session ss = fac.openSession();
@@ -37,7 +40,6 @@ public class UsuarioTeste {
 		
 		ss.save(louis);
 		
-		//ss.save(fusca);
 		ss.save(clark);
 		
 		ss.getTransaction().commit();
