@@ -1,20 +1,16 @@
 package bernardino.modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +25,7 @@ public class Usuario {
 	private Date dataNascimento;
 	private Integer idade;
 	private EstadoCivil estadoCivil;
-	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	private Veiculo veiculo;
 	
 	
 	@Id
@@ -72,12 +68,11 @@ public class Usuario {
 		this.estadoCivil = estadoCivil;
 	}
 	
-	@ElementCollection(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_phone", joinColumns = @JoinColumn(name = "id_user"))
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	@OneToOne(cascade = CascadeType.ALL)
+	public Veiculo getVeiculo() {
+		return veiculo;
 	}
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}	
 }
