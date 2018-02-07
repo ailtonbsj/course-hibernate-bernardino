@@ -1,11 +1,10 @@
 package bernardino.modelo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Veiculo {
@@ -41,7 +40,7 @@ public class Veiculo {
 		this.ano = ano;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "veiculo")
+	@ManyToOne
 	public Usuario getUsuario() {
 		return usuario;
 	}

@@ -1,13 +1,11 @@
 package bernardino.teste;
 
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import bernardino.modelo.Endereco;
 import bernardino.modelo.EstadoCivil;
 import bernardino.modelo.Usuario;
 import bernardino.modelo.Veiculo;
@@ -18,14 +16,15 @@ public class UsuarioTeste {
 		
 		Usuario clark = new Usuario();
 		Veiculo fusca = new Veiculo("Fusca", 1966);
+		Veiculo brasilia = new Veiculo("Brasilia", 1970);
 		
 		clark.setNome("Clark");
 		clark.setDataNascimento(new Date());
 		clark.setIdade(30);
 		clark.setEstadoCivil(EstadoCivil.SOLTEIRO);
-		clark.setVeiculo(fusca);
 		
 		fusca.setUsuario(clark);
+		brasilia.setUsuario(clark);
 		
 		Usuario louis = new Usuario();
 		louis.setNome("Louis");
@@ -39,8 +38,9 @@ public class UsuarioTeste {
 		ss.beginTransaction();
 		
 		ss.save(louis);
-		
 		ss.save(clark);
+		ss.save(fusca);
+		ss.save(brasilia);
 		
 		ss.getTransaction().commit();
 		
