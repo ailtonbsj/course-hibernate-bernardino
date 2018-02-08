@@ -26,6 +26,8 @@
         <!-- Names the annotated entity class -->
         <mapping class="bernardino.modelo.Usuario" />
         <mapping class="bernardino.modelo.Veiculo" />
+        <mapping class="bernardino.modelo.Funcionario" />
+        <mapping class="bernardino.modelo.Projeto" />
     </session-factory>
 
 </hibernate-configuration>
