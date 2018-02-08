@@ -28,6 +28,10 @@
         <mapping class="bernardino.modelo.Veiculo" />
         <mapping class="bernardino.modelo.Funcionario" />
         <mapping class="bernardino.modelo.Projeto" />
+        
+        <mapping class="bernardino.heranca.VeiculoHeranca" />
+        <mapping class="bernardino.heranca.VeiculoQuatroRodas" />
+        <mapping class="bernardino.heranca.VeiculoDuasRodas" />
     </session-factory>
 
 </hibernate-configuration>
