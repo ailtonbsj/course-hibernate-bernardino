@@ -5,11 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import bernardino.heranca.VeiculoDuasRodas;
-import bernardino.heranca.VeiculoHeranca;
 import bernardino.heranca.VeiculoQuatroRodas;
-import bernardino.modelo.Funcionario;
-import bernardino.modelo.Projeto;
-import bernardino.modelo.Veiculo;
 
 public class VeiculoHerancaTeste {
 
