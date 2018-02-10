@@ -31,6 +31,12 @@ public class VeiculoHerancaTeste {
 		session.save(moto);
 		
 		session.getTransaction().commit();
+		
+		VeiculoDuasRodas veiculo = session.get(VeiculoDuasRodas.class, 2);
+		System.out.println(veiculo.getMarca());
+		System.out.println(veiculo.getCilindradas());
+		
+		
 		session.close();
 	}
 }
