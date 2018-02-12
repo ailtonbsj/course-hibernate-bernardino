@@ -14,13 +14,22 @@ public class HQLTest {
 
 	public static void main(String[] args) {
 		Session sessao = SessionHibernate.obterSession();
-		Query consulta = sessao.createQuery("from Funcionario order by nome");
+		int id = 2;
+		double salario = 5000;
+		Query consulta = sessao.createQuery(
+				"from Funcionario where id >= :id and salario < :sal order by id");
+		consulta.setParameter("id", id);
+		consulta.setParameter("sal", salario);
 		
 		List<Funcionario> funcionarios = 
 				castList(Funcionario.class, consulta.getResultList());
+		
+		System.out.printf("Id\t | Nome\t\t | Salario\n");
 		for (Funcionario funcionario : funcionarios) {
-			System.out.println("Nome: " + funcionario.getNome()
-			+ "| Salario: " + funcionario.getSalario());
+			System.out.printf("%d\t | %s\t | %4.2f\n", 
+					funcionario.getId(),
+					funcionario.getNome(),
+					funcionario.getSalario());
 		}
 	}
 	
