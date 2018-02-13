@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 
 import bernardino.modelo.Funcionario;
@@ -17,19 +18,19 @@ public class HQLTest {
 		int id = 2;
 		double salario = 5000;
 		Query consulta = sessao.createQuery(
-				"from Funcionario where id >= :id and salario < :sal order by id");
+				"from Funcionario where id = :id and salario < :sal order by id");
 		consulta.setParameter("id", id);
 		consulta.setParameter("sal", salario);
-		
-		List<Funcionario> funcionarios = 
-				castList(Funcionario.class, consulta.getResultList());
-		
-		System.out.printf("Id\t | Nome\t\t | Salario\n");
-		for (Funcionario funcionario : funcionarios) {
+
+		try {
+			Funcionario funcionario = (Funcionario) consulta.getSingleResult();
+			System.out.printf("Id\t | Nome\t\t | Salario\n");
 			System.out.printf("%d\t | %s\t | %4.2f\n", 
 					funcionario.getId(),
 					funcionario.getNome(),
 					funcionario.getSalario());
+		} catch (NonUniqueResultException e) {
+			System.out.println("Muitas linhas!!!");
 		}
 	}
 	
