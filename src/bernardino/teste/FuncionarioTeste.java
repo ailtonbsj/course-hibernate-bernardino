@@ -26,22 +26,22 @@ public class FuncionarioTeste {
 		projeto1.setNome("Projeto 2");
 		
 		Funcionario funcionario1 = new Funcionario();
-		funcionario1.setNome("João Batista");
+		funcionario1.setNome("Manuel");
 		funcionario1.setSalario(2000.0);
-		funcionario1.setCpf("1234");
-		funcionario1.setAdmissao(new SimpleDateFormat("dd/MM/yyyy").parse("01/10/2014"));
+		funcionario1.setCpf("1238");
+		funcionario1.setAdmissao(new SimpleDateFormat("dd/MM/yyyy").parse("13/02/2018"));
 		
 		Funcionario funcionario2 = new Funcionario();
-		funcionario2.setNome("Maria Silva");
+		funcionario2.setNome("Fabiana Lima");
 		funcionario2.setSalario(3000.0);
-		funcionario2.setCpf("1235");
-		funcionario2.setAdmissao(new SimpleDateFormat("dd/MM/yyyy").parse("01/10/2015"));
+		funcionario2.setCpf("1237");
+		funcionario2.setAdmissao(new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2018"));
 		
 		Funcionario funcionario3 = new Funcionario();
-		funcionario3.setNome("Jota Silva");
+		funcionario3.setNome("Datiano Augusto");
 		funcionario3.setSalario(6000.0);
-		funcionario3.setCpf("1236");
-		funcionario3.setAdmissao(new SimpleDateFormat("dd/MM/yyyy").parse("01/10/2017"));
+		funcionario3.setCpf("1239");
+		funcionario3.setAdmissao(new Date());
 		
 		funcionario1.getProjetos().add(projeto1);
 		funcionario1.getProjetos().add(projeto2);

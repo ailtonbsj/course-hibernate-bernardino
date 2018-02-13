@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 
 import bernardino.modelo.Funcionario;
@@ -15,22 +14,22 @@ public class HQLTest {
 
 	public static void main(String[] args) {
 		Session sessao = SessionHibernate.obterSession();
-		int id = 2;
-		double salario = 5000;
-		Query consulta = sessao.createQuery(
-				"from Funcionario where id = :id and salario < :sal order by id");
-		consulta.setParameter("id", id);
-		consulta.setParameter("sal", salario);
 
-		try {
-			Funcionario funcionario = (Funcionario) consulta.getSingleResult();
-			System.out.printf("Id\t | Nome\t\t | Salario\n");
-			System.out.printf("%d\t | %s\t | %4.2f\n", 
+		//from Funcionario where admissao = CURRENT_DATE
+		Query consulta = sessao.createQuery(
+				"from Funcionario where year(admissao) = :ano");
+		consulta.setParameter("ano", 2018);
+
+		List<Funcionario> funcionarios = 
+				castList(Funcionario.class, consulta.getResultList());
+		
+		System.out.printf("Id\t | Nome\t\t | Salario\t | Admissão\n");
+		for (Funcionario funcionario : funcionarios) {
+			System.out.printf("%d\t | %s\t | %4.2f\t | %s\n", 
 					funcionario.getId(),
 					funcionario.getNome(),
-					funcionario.getSalario());
-		} catch (NonUniqueResultException e) {
-			System.out.println("Muitas linhas!!!");
+					funcionario.getSalario(),
+					funcionario.getAdmissao());
 		}
 	}
 	
