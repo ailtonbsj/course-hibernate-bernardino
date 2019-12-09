@@ -2,6 +2,8 @@ package curso.hibernate.modelo;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -25,6 +27,7 @@ public class Usuario {
 	private Integer idade;
 	private EstadoCivil estadoCivil;
 	private Endereco endereco;
+	private Endereco enderecoComercial;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -73,11 +76,28 @@ public class Usuario {
 	}
 
 	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name="logradouro", column=@Column(name="rua"))
+	})
 	public Endereco getEndereco() {
 		return endereco;
 	}
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name="logradouro", column=@Column(name="rua_com")),
+		@AttributeOverride(name="cidade", column=@Column(name="cit_com")),
+		@AttributeOverride(name="numero", column=@Column(name="num_com"))
+	})
+	public Endereco getEnderecoComercial() {
+		return enderecoComercial;
+	}
+
+	public void setEnderecoComercial(Endereco enderecoComercial) {
+		this.enderecoComercial = enderecoComercial;
 	}
 }

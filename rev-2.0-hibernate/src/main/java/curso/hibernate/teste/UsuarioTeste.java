@@ -17,12 +17,18 @@ public class UsuarioTeste {
 		endereco.setLogradouro("Rua G");
 		endereco.setNumero(2);
 		
+		Endereco enderecoComercial = new Endereco();
+		enderecoComercial.setCidade("Ico");
+		enderecoComercial.setLogradouro("Rua B");
+		enderecoComercial.setNumero(12);
+		
 		Usuario usuario = new Usuario();
 		usuario.setNome("Mateus");
 		usuario.setNascimento(new Date());
 		usuario.setIdade(12);
 		usuario.setEstadoCivil(EstadoCivil.SOLTEIRO);
 		usuario.setEndereco(endereco);
+		usuario.setEnderecoComercial(enderecoComercial);
 		
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();
