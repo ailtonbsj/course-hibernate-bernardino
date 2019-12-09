@@ -1,6 +1,7 @@
 package curso.hibernate.teste;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -53,9 +54,10 @@ public class UsuarioTeste {
 		
 		Usuario userBanco = session.get(Usuario.class, 1);
 		
-		System.out.println("Nome: " + userBanco.getNome());
-		System.out.println("Endereco: " + userBanco.getEndExtras().get(1).getLogradouro());
-		
 		session.close();
+		
+		System.out.println("Nome: " + userBanco.getNome());
+		List<Endereco> enderecos = usuario.getEndExtras();
+		System.out.println("Endereco: " + enderecos.get(1).getLogradouro());
 	}
 }

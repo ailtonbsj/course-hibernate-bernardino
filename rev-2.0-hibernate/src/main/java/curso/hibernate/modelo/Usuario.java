@@ -12,6 +12,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -107,7 +108,7 @@ public class Usuario {
 		this.enderecoComercial = enderecoComercial;
 	}
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@JoinTable(name = "usu_endextras",
 				joinColumns = @JoinColumn(name = "id_usuario"))
 	public List<Endereco> getEndExtras() {
