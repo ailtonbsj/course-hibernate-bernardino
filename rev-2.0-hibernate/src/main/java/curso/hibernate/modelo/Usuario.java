@@ -3,6 +3,7 @@ package curso.hibernate.modelo;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class Usuario {
 	private Date nascimento;
 	private Integer idade;
 	private EstadoCivil estadoCivil;
+	private Endereco endereco;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,5 +70,14 @@ public class Usuario {
 
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
+	}
+
+	@Embedded
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }
