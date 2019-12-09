@@ -52,7 +52,9 @@ public class UsuarioTeste {
 		session.getTransaction().commit();
 		
 		Usuario userBanco = session.get(Usuario.class, 1);
+		
 		System.out.println("Nome: " + userBanco.getNome());
+		System.out.println("Endereco: " + userBanco.getEndExtras().get(1).getLogradouro());
 		
 		session.close();
 	}
