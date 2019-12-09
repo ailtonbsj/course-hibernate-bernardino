@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import curso.hibernate.modelo.Endereco;
 import curso.hibernate.modelo.EstadoCivil;
 import curso.hibernate.modelo.Usuario;
+import curso.hibernate.modelo.Veiculo;
 
 public class UsuarioTeste {
 	public static void main(String[] args) {
@@ -44,20 +45,22 @@ public class UsuarioTeste {
 		usuario.getEndExtras().add(end1);
 		usuario.getEndExtras().add(end2);
 		
+		Veiculo fusca = new Veiculo("Fusca", 1966);
+		usuario.setVeiculo(fusca);
+		
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();
 		
 		session.beginTransaction();
 		
+		System.out.println("Inserindo Veiculo");
+		//session.save(fusca);
+		System.out.println("Inserindo Usuario");
 		session.save(usuario);
 		session.getTransaction().commit();
 		
 		Usuario userBanco = session.get(Usuario.class, 1);
 		
 		session.close();
-		
-		System.out.println("Nome: " + userBanco.getNome());
-		List<Endereco> enderecos = usuario.getEndExtras();
-		System.out.println("Endereco: " + enderecos.get(1).getLogradouro());
 	}
 }

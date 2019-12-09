@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -18,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +37,7 @@ public class Usuario {
 	private Endereco endereco;
 	private Endereco enderecoComercial;
 	private List<Endereco> endExtras = new ArrayList<Endereco>();
+	private Veiculo veiculo;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -108,7 +111,7 @@ public class Usuario {
 		this.enderecoComercial = enderecoComercial;
 	}
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@JoinTable(name = "usu_endextras",
 				joinColumns = @JoinColumn(name = "id_usuario"))
 	public List<Endereco> getEndExtras() {
@@ -117,5 +120,13 @@ public class Usuario {
 
 	public void setEndExtras(List<Endereco> endExtras) {
 		this.endExtras = endExtras;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 }
