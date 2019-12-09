@@ -30,12 +30,30 @@ public class UsuarioTeste {
 		usuario.setEndereco(endereco);
 		usuario.setEnderecoComercial(enderecoComercial);
 		
+		Endereco end1 = new Endereco();
+		end1.setCidade("Cedro");
+		end1.setLogradouro("Prado");
+		end1.setNumero(1);
+		
+		Endereco end2 = new Endereco();
+		end2.setCidade("Jaguaribe");
+		end2.setLogradouro("Rua dos Alfineiros");
+		end2.setNumero(100);
+		
+		usuario.getEndExtras().add(end1);
+		usuario.getEndExtras().add(end2);
+		
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();
 		
 		session.beginTransaction();
+		
 		session.save(usuario);
 		session.getTransaction().commit();
+		
+		Usuario userBanco = session.get(Usuario.class, 1);
+		System.out.println("Nome: " + userBanco.getNome());
+		
 		session.close();
 	}
 }
