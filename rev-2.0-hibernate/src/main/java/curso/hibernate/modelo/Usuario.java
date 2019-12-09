@@ -1,24 +1,16 @@
 package curso.hibernate.modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,9 +26,9 @@ public class Usuario {
 	private Date nascimento;
 	private Integer idade;
 	private EstadoCivil estadoCivil;
-	private Endereco endereco;
-	private Endereco enderecoComercial;
-	private List<Endereco> endExtras = new ArrayList<Endereco>();
+	//private Endereco endereco;
+	//private Endereco enderecoComercial;
+	//private List<Endereco> endExtras = new ArrayList<Endereco>();
 	private Veiculo veiculo;
 
 	@Id
@@ -85,44 +77,45 @@ public class Usuario {
 		this.estadoCivil = estadoCivil;
 	}
 
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(name="logradouro", column=@Column(name="rua"))
-	})
-	public Endereco getEndereco() {
-		return endereco;
-	}
+//	@Embedded
+//	@AttributeOverrides({
+//		@AttributeOverride(name="logradouro", column=@Column(name="rua"))
+//	})
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	@Embedded
+//	@AttributeOverrides({
+//		@AttributeOverride(name="logradouro", column=@Column(name="rua_com")),
+//		@AttributeOverride(name="cidade", column=@Column(name="cit_com")),
+//		@AttributeOverride(name="numero", column=@Column(name="num_com"))
+//	})
+//	public Endereco getEnderecoComercial() {
+//		return enderecoComercial;
+//	}
+//
+//	public void setEnderecoComercial(Endereco enderecoComercial) {
+//		this.enderecoComercial = enderecoComercial;
+//	}
 
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(name="logradouro", column=@Column(name="rua_com")),
-		@AttributeOverride(name="cidade", column=@Column(name="cit_com")),
-		@AttributeOverride(name="numero", column=@Column(name="num_com"))
-	})
-	public Endereco getEnderecoComercial() {
-		return enderecoComercial;
-	}
-
-	public void setEnderecoComercial(Endereco enderecoComercial) {
-		this.enderecoComercial = enderecoComercial;
-	}
-
-	@ElementCollection(fetch = FetchType.LAZY)
-	@JoinTable(name = "usu_endextras",
-				joinColumns = @JoinColumn(name = "id_usuario"))
-	public List<Endereco> getEndExtras() {
-		return endExtras;
-	}
-
-	public void setEndExtras(List<Endereco> endExtras) {
-		this.endExtras = endExtras;
-	}
+//	@ElementCollection(fetch = FetchType.LAZY)
+//	@JoinTable(name = "usu_endextras",
+//				joinColumns = @JoinColumn(name = "id_usuario"))
+//	public List<Endereco> getEndExtras() {
+//		return endExtras;
+//	}
+//
+//	public void setEndExtras(List<Endereco> endExtras) {
+//		this.endExtras = endExtras;
+//	}
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_veiculo")
 	public Veiculo getVeiculo() {
 		return veiculo;
 	}
