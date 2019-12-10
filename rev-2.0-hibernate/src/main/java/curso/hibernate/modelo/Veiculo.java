@@ -49,8 +49,7 @@ public class Veiculo implements Serializable {
 		this.ano = ano;
 	}
 
-	// @ManyToOne
-	@Transient
+	@ManyToOne
 	public Usuario getUsuario() {
 		return usuario;
 	}

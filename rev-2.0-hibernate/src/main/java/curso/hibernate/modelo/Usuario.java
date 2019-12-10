@@ -75,8 +75,7 @@ public class Usuario {
 		this.estadoCivil = estadoCivil;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_usuario")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	public List<Veiculo> getVeiculos() {
 		return veiculos;
 	}

@@ -23,8 +23,8 @@ public class UsuarioTeste {
 		
 		Veiculo fusca = new Veiculo("Fusca", 1966);
 		Veiculo brasilia = new Veiculo("Brasilia", 1980);
-//		fusca.setUsuario(usuario);
-//		brasilia.setUsuario(usuario);
+		fusca.setUsuario(usuario);
+		brasilia.setUsuario(usuario);
 		
 		usuario.setVeiculos(new ArrayList<Veiculo>());
 		usuario.getVeiculos().add(fusca);
