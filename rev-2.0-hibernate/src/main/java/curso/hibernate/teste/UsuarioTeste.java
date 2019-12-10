@@ -1,6 +1,8 @@
 package curso.hibernate.teste;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,8 +23,12 @@ public class UsuarioTeste {
 		
 		Veiculo fusca = new Veiculo("Fusca", 1966);
 		Veiculo brasilia = new Veiculo("Brasilia", 1980);
-		fusca.setUsuario(usuario);
-		brasilia.setUsuario(usuario);
+//		fusca.setUsuario(usuario);
+//		brasilia.setUsuario(usuario);
+		
+		usuario.setVeiculos(new ArrayList<Veiculo>());
+		usuario.getVeiculos().add(fusca);
+		usuario.getVeiculos().add(brasilia);
 		
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session session = sf.openSession();

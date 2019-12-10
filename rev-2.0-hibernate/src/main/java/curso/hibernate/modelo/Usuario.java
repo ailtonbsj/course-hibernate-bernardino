@@ -1,6 +1,7 @@
 package curso.hibernate.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +25,7 @@ public class Usuario {
 	private Date nascimento;
 	private Integer idade;
 	private EstadoCivil estadoCivil;
+	private List<Veiculo> veiculos;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,5 +71,14 @@ public class Usuario {
 
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
+	}
+
+	@OneToMany
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
 	}
 }
