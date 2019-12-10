@@ -2,12 +2,11 @@ package curso.hibernate.modelo;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Entity
@@ -49,7 +48,7 @@ public class Veiculo implements Serializable {
 		this.ano = ano;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "veiculo")
+	@ManyToOne
 	public Usuario getUsuario() {
 		return usuario;
 	}
