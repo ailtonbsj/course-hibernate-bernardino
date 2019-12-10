@@ -12,7 +12,7 @@
 		<property name="connection.password"></property>
 
 		<!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
@@ -22,8 +22,6 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="curso.hibernate.modelo.Usuario" />
-        <mapping class="curso.hibernate.modelo.Veiculo" />
         <mapping class="curso.hibernate.modelo.Funcionario" />
         <mapping class="curso.hibernate.modelo.Projeto" />
 	</session-factory>
