@@ -24,5 +24,8 @@
         <!-- Names the annotated entity class -->
         <mapping class="curso.hibernate.modelo.Funcionario" />
         <mapping class="curso.hibernate.modelo.Projeto" />
+        <mapping class="curso.hibernate.heranca.Veiculo" />
+        <mapping class="curso.hibernate.heranca.VeiculoDuasRodas" />
+        <mapping class="curso.hibernate.heranca.VeiculoQuatroRodas" />
 	</session-factory>
 </hibernate-configuration>
