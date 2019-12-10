@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
@@ -48,7 +49,8 @@ public class Veiculo implements Serializable {
 		this.ano = ano;
 	}
 
-	@ManyToOne
+	// @ManyToOne
+	@Transient
 	public Usuario getUsuario() {
 		return usuario;
 	}
