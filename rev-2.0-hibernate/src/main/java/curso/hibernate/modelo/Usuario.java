@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -75,7 +77,10 @@ public class Usuario {
 		this.estadoCivil = estadoCivil;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usu_veiculo",
+			joinColumns = @JoinColumn(name = "id_usuario"),
+			inverseJoinColumns = @JoinColumn(name = "id_veiculo"))
 	public List<Veiculo> getVeiculos() {
 		return veiculos;
 	}
